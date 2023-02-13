@@ -1,18 +1,20 @@
 import java.util.*;
 
 class Solution {
-    public int[] solution(int denum1, int num1, int denum2, int num2) {
+    public int[] solution(int numer1, int denom1, int numer2, int denom2) {
         int[] answer = new int[2];
-        int gcd=1; //최대공약수 저장
+        int num1 = (numer1 * denom2) + (numer2 * denom1); //분자
+        int num2 = denom1 * denom2; //분모
         
-        answer[0] = denum1*num2 + denum2*num1; //분자
-        answer[1] = num1 * num2; //분모
-        
-        for(int i=1 ; i<=answer[0] && i<=answer[1] ; i++){
-            if(answer[0]%i==0 && answer[1]%i==0) gcd = i;
+        //기약분수로 만들기(분자, 분모 동시에 나누어지는 수가 있으면 나누어주기)
+        for(int i = num1-1; i > 1; i--) {
+            if(num1 % i == 0 && num2 % i == 0) { 
+                num1 /= i;
+                num2 /= i;
+            }
         }
-        answer[0] /= gcd;
-        answer[1] /= gcd;
+        answer[0] = num1;
+        answer[1] = num2;
         
         return answer;
     }
