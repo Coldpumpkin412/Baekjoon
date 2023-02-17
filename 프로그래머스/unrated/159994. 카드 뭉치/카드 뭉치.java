@@ -11,7 +11,6 @@ class Solution {
 		
 		//goal배열의 첫 번째 값부터 확인
 		for(String str : goal) {
-			System.out.println(str);
 			//goal의 문자열이 헤드값인 카드뭉치 큐를 poll
 			if(card1.contains(str) && card1.peek().equals(str)) {
 				card1.poll();
