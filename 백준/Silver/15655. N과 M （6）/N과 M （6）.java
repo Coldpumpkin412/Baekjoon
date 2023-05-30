@@ -1,0 +1,56 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+	static int N,M;
+	static int[] arr;
+	static int[] num;
+	static boolean[] visited;
+
+	static StringBuilder sb = new StringBuilder();
+	
+	static void DFS(int N, int M, int index, int depth) {
+		if(depth == M) {
+			for(int number : arr) sb.append(number).append(" ");
+			
+			sb.append("\n");
+			return;
+		}
+		
+		for(int i=index ; i<N ; i++) {
+			if(!visited[i]) {
+				visited[i] = true;
+				arr[depth] = num[i];
+				DFS(N, M, i, depth+1);
+				
+				visited[i] = false;
+			}
+		}
+	}
+	
+	public static void main(String[] args) throws IOException{
+		//백트래킹 사용 : 해당 노드가 유망하지 않은 노드일 때 부모 노드로 돌아간다. 기본적으로 재귀 및 DFS활용
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		
+		st = new StringTokenizer(br.readLine());
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
+		
+		arr = new int[M];
+		num = new int[N];
+		visited = new boolean[N];
+		
+		st = new StringTokenizer(br.readLine());
+		for(int i=0 ; i<N ; i++) {
+			num[i] = Integer.parseInt(st.nextToken());
+		}
+		
+		Arrays.sort(num);
+		
+		DFS(N, M, 0, 0);
+		
+		System.out.print(sb);
+	}
+}	
