@@ -1,0 +1,15 @@
+# 도서정보 테이블 BOOK
+# 저자정보 테이블 AUTHOR
+# 도서의 날짜 별 판매량 정보 테이브 BOOK_SALES
+# 2022년 1월 도서 판매 데이터 기준 / 저자 별, 카테고리 별 매출액을 구한 후
+# 저자ID, 저자명, 카테고리, 매출액 리스트 출력
+# 결과는 저자ID 기준 오름차순, 카테고리 기준 내림차순
+SELECT AR.AUTHOR_ID, AR.AUTHOR_NAME, B.CATEGORY, SUM(BS.SALES * B.PRICE) AS TOTAL_SALE
+FROM BOOK AS B
+    INNER JOIN AUTHOR AS AR
+    ON B.AUTHOR_ID = AR.AUTHOR_ID
+    INNER JOIN BOOK_SALES AS BS
+    ON B.BOOK_ID = BS.BOOK_ID
+WHERE BS.SALES_DATE LIKE '2022-01%'
+GROUP BY AUTHOR_ID, CATEGORY
+ORDER BY AUTHOR_ID ASC, CATEGORY DESC
