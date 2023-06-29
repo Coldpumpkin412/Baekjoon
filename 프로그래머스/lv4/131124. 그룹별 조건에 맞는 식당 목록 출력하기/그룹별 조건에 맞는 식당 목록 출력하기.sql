@@ -1,0 +1,20 @@
+# 고객정보테이블 MEMBER_PROFILE
+# 식당리뷰정보테이블 REST_REVIEW
+# 리뷰를 가장 많이 작성한 회원의 리뷰 조회
+# 회원 이름, 리뷰 텍스트, 리뷰 작성일 출력
+# 리뷰 작성일 기준 오름차순, 리뷰 텍스트 기준 오름차순
+
+SELECT M.MEMBER_NAME, R.REVIEW_TEXT, DATE_FORMAT(R.REVIEW_DATE, "%Y-%m-%d")
+FROM MEMBER_PROFILE AS M
+JOIN (
+    SELECT REVIEW_TEXT, REVIEW_DATE, MEMBER_ID
+    FROM REST_REVIEW
+    WHERE MEMBER_ID = (
+        SELECT MEMBER_ID
+        FROM REST_REVIEW
+        GROUP BY MEMBER_ID
+        ORDER BY COUNT(*) DESC
+        LIMIT 1)
+    ) AS R
+ON R.MEMBER_ID = M.MEMBER_ID
+ORDER BY R.REVIEW_DATE, R.REVIEW_TEXT
