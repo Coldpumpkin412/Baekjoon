@@ -1,3 +1,4 @@
+import java.util.*;
 import java.io.*;
 
 public class Main {
@@ -9,7 +10,7 @@ public class Main {
 		String pattern = br.readLine();		//패턴
 		String[] pArr = pattern.split("\\*");	//*을 기준으로 두개의 문자열로 나누기 (*로 나누려면 역슬래쉬 2개 붙여줘야함)
 		
-		for (int i = 0; i < N; i++) {
+		while(N-->0) {
 			String str = br.readLine();		//검증할 파일 이름
             
 			//*을 뺀 패턴 문자열보다 검증할 파일 이름 길이가 짧으면 검증이 안됨
