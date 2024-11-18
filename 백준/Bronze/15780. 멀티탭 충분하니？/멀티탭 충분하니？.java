@@ -11,18 +11,16 @@ public class Main{
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
         
+        //총 꽂을 수 있는 수
+        int count = 0;
+        
         //멀티탭 별로 구의 수 저장할 배열 선언 및 값 입력
         int[] A = new int[K];
         
         st = new StringTokenizer(br.readLine());
         for(int i=0 ; i<K ; i++){
             A[i] = Integer.parseInt(st.nextToken());
-        }
-        
-        //총 꽂을 수 있는 수
-        int count = 0;
-        
-        for(int i=0 ; i<K ; i++){
+            
             //구의 수가 짝수일 경우
             if(A[i]%2 == 0){
                 count += A[i]/2;
@@ -31,8 +29,6 @@ public class Main{
             }
         }
         
-        
         System.out.println((N<=count) ? "YES" : "NO");
-                    
     }
 }
