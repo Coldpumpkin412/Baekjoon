@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int T = sc.nextInt();
+		
+		for(int i=1 ; i<=T ; i++) {
+			int N = sc.nextInt();
+			
+			System.out.print("Case #" + i + ": ");
+            
+			if(N > 4500) {
+				System.out.println("Round 1");
+			}else if(N > 1000) {
+				System.out.println("Round 2");
+			}else if(N > 25) {
+				System.out.println("Round 3");
+			}else {
+				System.out.println("World Finals");
+			}
+		}
+        
+	}
+}
